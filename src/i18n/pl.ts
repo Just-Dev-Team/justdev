@@ -215,6 +215,7 @@ export const pl = {
     phone: 'Telefon',
     address: 'Adres',
     company: 'Dane firmy',
+    vat: 'VAT UE',
     profiles: 'Profile',
   },
   footer: {

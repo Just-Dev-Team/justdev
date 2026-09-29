@@ -216,6 +216,7 @@ export const en: Dict = {
     phone: 'Phone',
     address: 'Address',
     company: 'Company details',
+    vat: 'EU VAT',
     profiles: 'Profiles',
   },
   footer: {

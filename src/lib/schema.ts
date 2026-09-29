@@ -32,10 +32,13 @@ function organization(locale: Locale) {
     foundingDate: String(company.foundingYear),
     founder: { '@id': ids.person },
     taxID: company.nip,
+    vatID: company.vatEu,
     identifier: [
       { '@type': 'PropertyValue', propertyID: 'NIP', value: company.nip },
       { '@type': 'PropertyValue', propertyID: 'REGON', value: company.regon },
     ],
+    geo: { '@type': 'GeoCoordinates', latitude: company.geo.latitude, longitude: company.geo.longitude },
+    hasMap: `https://www.google.com/maps?q=${company.geo.latitude},${company.geo.longitude}`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: company.street,

@@ -30,10 +30,11 @@ const root = localeRoot(locale);
         </dd>
       </div>
       <div>
-        <dt class="mono">NIP / REGON</dt>
+        <dt class="mono">NIP / REGON / {d.contact.vat}</dt>
         <dd>
           NIP: {company.nip}<br />
-          REGON: {company.regon}
+          REGON: {company.regon}<br />
+          {d.contact.vat}: {company.vatEu}
         </dd>
       </div>
       <div>

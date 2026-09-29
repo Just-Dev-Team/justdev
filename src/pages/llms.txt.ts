@@ -23,6 +23,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- Legal name: ${company.name} (sole proprietorship registered in Poland, CEIDG)`,
     `- NIP (tax ID): ${company.nip}`,
     `- REGON: ${company.regon}`,
+    `- EU VAT number: ${company.vatEu}`,
     `- Address: ${company.street}, ${company.postalCode} ${company.city}, Poland`,
     `- Email: ${company.email}`,
     `- Phone: ${company.phoneDisplay}`,
