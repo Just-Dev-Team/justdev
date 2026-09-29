@@ -1,0 +1,31 @@
+---
+// Monogram + wordmark. The same mark is used for favicon.svg.
+---
+
+<span class="logo">
+  <svg class="mark" width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+    <rect width="32" height="32" rx="6" fill="var(--accent)"></rect>
+    <path d="M9 9h5v10.5a3.5 3.5 0 0 1-7 0" fill="none" stroke="var(--accent-ink)" stroke-width="2.6" stroke-linecap="square"></path>
+    <path d="M18 9h2.5a5.5 5.5 0 0 1 0 11H18z" fill="none" stroke="var(--accent-ink)" stroke-width="2.6"></path>
+    <path d="M7 25h18" stroke="var(--accent-ink)" stroke-width="2.6"></path>
+  </svg>
+  <span class="word">Just<span>Dev</span></span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .word {
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: -0.02em;
+  }
+
+  .word span {
+    color: var(--accent);
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+---
+
+<Base locale="pl" title="404 — Nie znaleziono strony / Page not found — JustDev" description="Nie znaleziono strony. Page not found." noindex bare>
+  <div class="wrap nf">
+    <a class="brand" href="/" aria-label="JustDev — strona główna"><Logo /></a>
+    <p class="code mono" aria-hidden="true">404</p>
+    <div class="cols">
+      <section aria-labelledby="nf-pl">
+        <h1 id="nf-pl">Nie znaleziono strony</h1>
+        <p>Strona, której szukasz, nie istnieje lub została przeniesiona.</p>
+        <p><a class="btn btn--primary" href="/">Strona główna</a></p>
+      </section>
+      <section lang="en" aria-labelledby="nf-en">
+        <h2 id="nf-en">Page not found</h2>
+        <p>The page you are looking for does not exist or has been moved.</p>
+        <p><a class="btn" href="/en/">English homepage</a></p>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .nf {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    align-content: center;
+    gap: 2rem;
+    padding-block: 3rem;
+  }
+
+  .brand {
+    text-decoration: none;
+    justify-self: start;
+  }
+
+  .code {
+    font-size: clamp(5rem, 22vw, 11rem);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+  }
+
+  .cols {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  section {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+
+  h1,
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  section p:not(:last-child) {
+    color: var(--text-muted);
+  }
+
+  @media (min-width: 48rem) {
+    .cols {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

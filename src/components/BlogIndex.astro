@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import { t, formatDate, isoDate, type Locale } from '../i18n';
+import { getPosts, postPath } from '../lib/blog';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const posts = await getPosts(locale);
+---
+
+<Base locale={locale} title={d.meta.blogTitle} description={d.meta.blogDescription} alternates={{ pl: '/blog/', en: '/en/blog/' }}>
+  <div class="wrap page">
+    <header class="section-head">
+      <p class="section-kicker mono">{d.blogNav}</p>
+      <h1 class="section-title">{d.blog.title}</h1>
+      <p class="section-intro">{d.blog.intro}</p>
+    </header>
+    <ul class="list">
+      {
+        posts.map((p) => (
+          <li>
+            <article>
+              <time class="mono" datetime={isoDate(p.data.date)}>{formatDate(p.data.date, locale)}</time>
+              <h2><a href={postPath(p)}>{p.data.title}</a></h2>
+              <p>{p.data.description}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>
+
+<style>
+  .page {
+    padding-top: clamp(3rem, 8vw, 5rem);
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  article {
+    display: grid;
+    gap: 0.5rem;
+    padding-block: 1.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  time {
+    color: var(--text-faint);
+  }
+
+  h2 {
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+  }
+
+  h2 a {
+    text-decoration: none;
+  }
+
+  h2 a:hover {
+    color: var(--accent);
+  }
+
+  article p {
+    color: var(--text-muted);
+    max-width: 44rem;
+  }
+</style>

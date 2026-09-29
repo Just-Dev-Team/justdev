@@ -1,0 +1,126 @@
+---
+import Logo from './Logo.astro';
+import { company, contentUpdated } from '../site';
+import { t, localeRoot, formatDate, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const year = new Date().getFullYear();
+const root = localeRoot(locale);
+---
+
+<footer class="site-footer">
+  <div class="wrap grid">
+    <div class="id">
+      <a href={root} aria-label={d.a11y.home}><Logo /></a>
+      <p class="muted">{d.footer.privacy}</p>
+    </div>
+
+    <dl class="data">
+      <div>
+        <dt class="mono">{d.contact.company}</dt>
+        <dd>
+          {company.name}<br />
+          {company.street}<br />
+          {company.postalCode} {company.city}, {d.footer.country}
+        </dd>
+      </div>
+      <div>
+        <dt class="mono">NIP / REGON</dt>
+        <dd>
+          NIP: {company.nip}<br />
+          REGON: {company.regon}
+        </dd>
+      </div>
+      <div>
+        <dt class="mono">{d.contact.kicker}</dt>
+        <dd>
+          <a href={`mailto:${company.email}`}>{company.email}</a><br />
+          <a href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="wrap bottom mono">
+    <p>© {year} {company.name}. {d.footer.rights}</p>
+    <p>{d.footer.updated}: <time datetime={contentUpdated}>{formatDate(new Date(contentUpdated), locale)}</time></p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--section-gap);
+    border-top: 1px solid var(--line);
+    background: var(--bg-sunken);
+    padding-block: 3rem 2rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .id {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    max-width: 22rem;
+  }
+
+  .id a {
+    text-decoration: none;
+    justify-self: start;
+  }
+
+  .muted {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .data {
+    display: grid;
+    gap: 1.75rem;
+    margin: 0;
+  }
+
+  dt {
+    color: var(--text-faint);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-faint);
+  }
+
+  @media (min-width: 48rem) {
+    .data {
+      grid-template-columns: repeat(3, auto);
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 62rem) {
+    .grid {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+</style>

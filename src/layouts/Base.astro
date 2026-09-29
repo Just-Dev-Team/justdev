@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Paths of this page in each language; enables hreflang and the language switch. */
+  alternates?: Partial<Record<Locale, string>>;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  /** Hide the site header/footer chrome (used by the 404 page). */
+  bare?: boolean;
+}
+
+const { locale, title, description, alternates, ogType = 'website', noindex = false, bare = false } = Astro.props;
+const d = t(locale);
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(`/og-${locale}.png`, site).href;
+const otherLocale: Locale = locale === 'pl' ? 'en' : 'pl';
+const hreflang = alternates && alternates.pl && alternates.en ? alternates : undefined;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {
+      hreflang && (
+        <>
+          <link rel="alternate" hreflang="pl" href={new URL(hreflang.pl!, site).href} />
+          <link rel="alternate" hreflang="en" href={new URL(hreflang.en!, site).href} />
+          <link rel="alternate" hreflang="x-default" href={new URL(hreflang.pl!, site).href} />
+        </>
+      )
+    }
+    <meta name="theme-color" content="#0b0c0e" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="JustDev" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={d.meta.ogLocale} />
+    {hreflang && <meta property="og:locale:alternate" content={t(otherLocale).meta.ogLocale} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="JustDev — backend & cloud infrastructure" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{d.a11y.skip}</a>
+    {!bare && <Header locale={locale} alternates={alternates} />}
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    {!bare && <Footer locale={locale} />}
+  </body>
+</html>
+
+<style>
+  main:focus {
+    outline: none;
+  }
+</style>

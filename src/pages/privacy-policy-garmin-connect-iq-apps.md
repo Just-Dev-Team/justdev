@@ -1,7 +1,7 @@
 ---
-layout: default
+layout: ../layouts/Policy.astro
 title: Privacy Policy — Garmin Connect IQ Apps
-sitemap: false
+description: Privacy policy for Connect IQ applications and widgets for Garmin devices published by JustDev.
 ---
 
 # Privacy Policy — Garmin Connect IQ Apps

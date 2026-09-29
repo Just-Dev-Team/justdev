@@ -1,0 +1,703 @@
+---
+import SectionHead from './SectionHead.astro';
+import HeroDiagram from './HeroDiagram.astro';
+import { company } from '../site';
+import { t, formatDate, isoDate, type Locale } from '../i18n';
+import { getPosts, postPath } from '../lib/blog';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
+const posts = (await getPosts(locale)).slice(0, 3);
+const blogRoot = locale === 'pl' ? '/blog/' : '/en/blog/';
+const mailto = `mailto:${company.email}`;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow mono">{d.hero.eyebrow}</p>
+      <h1 id="hero-title">{d.hero.title}</h1>
+      <p class="lead">{d.hero.lead}</p>
+      <div class="actions">
+        <a class="btn btn--primary" href={mailto}>{d.hero.ctaPrimary} <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn" href="#services">{d.hero.ctaSecondary}</a>
+      </div>
+      <dl class="facts">
+        {
+          d.hero.facts.map((f) => (
+            <div>
+              <dt class="mono">{f.k}</dt>
+              <dd>{f.v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+    <div class="hero-visual">
+      <HeroDiagram caption={d.hero.diagramCaption} />
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services" aria-labelledby="services-title">
+  <div class="wrap">
+    <SectionHead id="services" index={d.services.index} kicker={d.services.kicker} title={d.services.title} intro={d.services.intro} />
+    <ul class="cards">
+      {
+        d.services.items.map((s) => (
+          <li class="card">
+            <p class="card-tag mono">// {s.tag}</p>
+            <h3>{s.title}</h3>
+            <p class="card-body">{s.body}</p>
+            <ul class="points">
+              {s.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="technology" aria-labelledby="technology-title">
+  <div class="wrap">
+    <SectionHead id="technology" index={d.technology.index} kicker={d.technology.kicker} title={d.technology.title} intro={d.technology.intro} />
+    <dl class="stack">
+      {
+        d.technology.layers.map((l, i) => (
+          <div class:list={['layer', { 'layer--core': i === 0 }]}>
+            <dt class="mono">{l.label}</dt>
+            <dd>
+              <ul>
+                {l.items.map((item) => <li>{item}</li>)}
+              </ul>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<section class="section" id="process" aria-labelledby="process-title">
+  <div class="wrap">
+    <SectionHead id="process" index={d.process.index} kicker={d.process.kicker} title={d.process.title} intro={d.process.intro} />
+    <ol class="steps">
+      {
+        d.process.steps.map((s, i) => (
+          <li>
+            <span class="step-num mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <div class="wrap">
+    <SectionHead id="experience" index={d.experience.index} kicker={d.experience.kicker} title={d.experience.title} />
+    <div class="sectors">
+      {
+        d.experience.sectors.map((s) => (
+          <article class="sector">
+            <p class="card-tag mono">{s.tag}</p>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </article>
+        ))
+      }
+    </div>
+    <aside class="nda" aria-labelledby="nda-title">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4.5" y="10.5" width="15" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.6"></path>
+      </svg>
+      <div>
+        <h3 id="nda-title">{d.experience.ndaTitle}</h3>
+        <p>{d.experience.ndaBody}</p>
+      </div>
+    </aside>
+    <p class="direct">{d.experience.direct}</p>
+  </div>
+</section>
+
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="wrap about">
+    <div>
+      <SectionHead id="about" index={d.about.index} kicker={d.about.kicker} title={d.about.title} />
+      <div class="about-text">
+        {d.about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+    <dl class="about-facts">
+      {
+        d.about.facts.map((f) => (
+          <div>
+            <dt class="mono">{f.k}</dt>
+            <dd>{f.v}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+{
+  posts.length > 0 && (
+    <section class="section" id="news" aria-labelledby="news-title">
+      <div class="wrap">
+        <SectionHead id="news" index={d.news.index} kicker={d.news.kicker} title={d.news.title} />
+        <ul class="posts">
+          {posts.map((p) => (
+            <li>
+              <a href={postPath(p)}>
+                <time class="mono" datetime={isoDate(p.data.date)}>{formatDate(p.data.date, locale)}</time>
+                <span class="post-title">{p.data.title}</span>
+                <span class="post-desc">{p.data.description}</span>
+                <span class="post-more mono">{d.news.read} →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="all-posts"><a href={blogRoot}>{d.news.all} →</a></p>
+      </div>
+    </section>
+  )
+}
+
+<section class="section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact">
+      <SectionHead id="contact" index={d.contact.index} kicker={d.contact.kicker} title={d.contact.title} intro={d.contact.intro} />
+      <dl class="contact-list">
+        <div>
+          <dt class="mono">{d.contact.email}</dt>
+          <dd><a class="big" href={mailto}>{company.email}</a></dd>
+        </div>
+        <div>
+          <dt class="mono">{d.contact.phone}</dt>
+          <dd><a class="big" href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a></dd>
+        </div>
+        <div>
+          <dt class="mono">{d.contact.address}</dt>
+          <dd>
+            <address>
+              {company.name}<br />
+              {company.street}<br />
+              {company.postalCode} {company.city}, {d.footer.country}
+            </address>
+          </dd>
+        </div>
+        <div>
+          <dt class="mono">{d.contact.company}</dt>
+          <dd>
+            NIP: {company.nip}<br />
+            REGON: {company.regon}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    padding-block: clamp(3rem, 8vw, 6rem) 0;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 70% at 30% 20%, #000 20%, transparent 75%);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 5.4vw, 3.1rem);
+    font-weight: 680;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    max-width: 22ch;
+  }
+
+  .lead {
+    margin-top: 1.5rem;
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 38rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1rem 2rem;
+    margin: 3rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .facts dt,
+  .about-facts dt,
+  .contact-list dt {
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+
+  .facts dd {
+    margin: 0.25rem 0 0;
+    font-weight: 550;
+  }
+
+  .hero-copy > * {
+    animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-copy > h1 {
+    animation: none;
+  }
+
+  .hero-copy > .lead {
+    animation-delay: 0.08s;
+  }
+
+  .hero-copy > .actions {
+    animation-delay: 0.16s;
+  }
+
+  .hero-copy > .facts {
+    animation-delay: 0.24s;
+  }
+
+  .hero-visual {
+    animation: rise 0.8s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  /* Service cards */
+  .cards {
+    display: grid;
+    gap: 1px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    background: var(--bg);
+    transition: background-color 0.2s ease;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 2px;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .card:hover {
+    background: var(--bg-raised);
+  }
+
+  .card:hover::before {
+    width: 100%;
+  }
+
+  .card-tag {
+    color: var(--accent);
+  }
+
+  .card h3,
+  .sector h3 {
+    font-size: 1.375rem;
+  }
+
+  .card-body {
+    color: var(--text-muted);
+  }
+
+  .points {
+    list-style: none;
+    margin: 0.25rem 0 0;
+    padding: 0;
+    font-size: 0.9375rem;
+  }
+
+  .points li {
+    display: flex;
+    gap: 0.6rem;
+    padding-block: 0.4rem;
+    border-top: 1px dashed var(--line);
+  }
+
+  .points li::before {
+    content: '→';
+    color: var(--text-faint);
+  }
+
+  /* Tech stack */
+  .stack {
+    margin: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .layer {
+    display: grid;
+    gap: 0.75rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .layer dt {
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  .layer dd {
+    margin: 0;
+  }
+
+  .layer ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .layer li {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 0.9375rem;
+  }
+
+  .layer--core li {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  /* Process */
+  .steps {
+    display: grid;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: step;
+  }
+
+  .steps li {
+    position: relative;
+    display: grid;
+    gap: 0.6rem;
+    padding-left: 3.5rem;
+  }
+
+  .steps li::after {
+    content: '';
+    position: absolute;
+    left: 1.1rem;
+    top: 2.5rem;
+    bottom: -1.75rem;
+    width: 1px;
+    background: var(--line-strong);
+  }
+
+  .steps li:last-child::after {
+    display: none;
+  }
+
+  .step-num {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    color: var(--accent);
+    font-size: 0.75rem;
+    background: var(--bg);
+  }
+
+  .steps h3 {
+    font-size: 1.25rem;
+    padding-top: 0.3rem;
+  }
+
+  .steps p {
+    color: var(--text-muted);
+  }
+
+  /* Experience */
+  .sectors {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .sector {
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: linear-gradient(160deg, var(--bg-raised), var(--bg) 70%);
+  }
+
+  .sector p:last-child {
+    color: var(--text-muted);
+  }
+
+  .nda {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: 10px;
+    color: var(--text-muted);
+  }
+
+  .nda svg {
+    flex: none;
+    color: var(--accent);
+    margin-top: 0.15rem;
+  }
+
+  .nda h3 {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+
+  .direct {
+    margin-top: 2rem;
+    font-size: 1.125rem;
+    max-width: 44rem;
+  }
+
+  /* About */
+  .about {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .about-text {
+    display: grid;
+    gap: 1.1rem;
+    max-width: 40rem;
+    font-size: 1.125rem;
+  }
+
+  .about-text p + p {
+    color: var(--text-muted);
+  }
+
+  .about-facts {
+    margin: 0;
+    align-self: end;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-raised);
+  }
+
+  .about-facts div {
+    padding: 1rem 1.25rem;
+  }
+
+  .about-facts div + div {
+    border-top: 1px solid var(--line);
+  }
+
+  .about-facts dd {
+    margin: 0.2rem 0 0;
+  }
+
+  /* News */
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .posts a {
+    display: grid;
+    gap: 0.4rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+  }
+
+  .posts time,
+  .post-more {
+    color: var(--text-faint);
+  }
+
+  .post-title {
+    font-size: 1.375rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    transition: color 0.15s ease;
+  }
+
+  .posts a:hover .post-title {
+    color: var(--accent);
+  }
+
+  .post-desc {
+    color: var(--text-muted);
+    max-width: 44rem;
+  }
+
+  .all-posts {
+    margin-top: 1.25rem;
+  }
+
+  /* Contact */
+  .contact {
+    padding: clamp(1.5rem, 5vw, 3.5rem);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    background:
+      radial-gradient(ellipse 60% 80% at 100% 0%, var(--accent-soft), transparent 60%),
+      var(--bg-raised);
+  }
+
+  .contact-list {
+    display: grid;
+    gap: 1.75rem;
+    margin: 0;
+  }
+
+  .contact-list dd {
+    margin: 0.35rem 0 0;
+  }
+
+  .contact-list address {
+    font-style: normal;
+  }
+
+  .big {
+    font-size: clamp(1.25rem, 4.2vw, 1.875rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+    text-decoration-color: var(--accent);
+  }
+
+  .big:hover {
+    color: var(--accent);
+  }
+
+  @media (min-width: 48rem) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sectors {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .layer {
+      grid-template-columns: 12rem 1fr;
+      align-items: center;
+    }
+
+    .contact-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 62rem) {
+    .hero-grid {
+      grid-template-columns: 3fr 2fr;
+      gap: 3.5rem;
+    }
+
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .steps li {
+      padding-left: 0;
+      padding-top: 3.5rem;
+    }
+
+    .steps li::after {
+      left: 2.75rem;
+      right: -1.25rem;
+      top: 1.1rem;
+      bottom: auto;
+      width: auto;
+      height: 1px;
+    }
+
+    .about {
+      grid-template-columns: 3fr 2fr;
+      gap: 4rem;
+    }
+  }
+</style>

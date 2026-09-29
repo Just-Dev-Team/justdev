@@ -1,0 +1,215 @@
+---
+import Logo from './Logo.astro';
+import { t, localeRoot, locales, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  alternates?: Partial<Record<Locale, string>>;
+}
+
+const { locale, alternates } = Astro.props;
+const d = t(locale);
+const root = localeRoot(locale);
+const links = [
+  ...d.nav.map((n) => ({ href: `${root}#${n.id}`, label: n.label })),
+  { href: `${root}blog/`, label: d.blogNav },
+];
+const langs = locales.map((l) => ({
+  code: l,
+  href: alternates?.[l] ?? localeRoot(l),
+  current: l === locale,
+  name: l === 'pl' ? 'Polski' : 'English',
+}));
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href={root} aria-label={d.a11y.home}>
+      <Logo />
+    </a>
+
+    <nav class="nav-desktop" aria-label={d.a11y.mainNav}>
+      <ul>
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <ul class="lang" aria-label={d.a11y.langSwitch}>
+      {
+        langs.map((l) => (
+          <li>
+            {l.current ? (
+              <span aria-current="true" title={l.name}>{l.code.toUpperCase()}</span>
+            ) : (
+              <a href={l.href} hreflang={l.code} lang={l.code} title={l.name}>
+                <span class="visually-hidden">{l.name}</span>
+                <span aria-hidden="true">{l.code.toUpperCase()}</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <details class="nav-mobile">
+      <summary>
+        <span>{d.a11y.menu}</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+      </summary>
+      <nav aria-label={d.a11y.mainNav}>
+        <ul>
+          {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgb(11 12 14 / 0.86);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    padding-block: 0.5rem;
+    text-decoration: none;
+    margin-right: auto;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-desktop ul {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .nav-desktop a,
+  .nav-mobile a {
+    display: block;
+    padding: 0.5rem 0.7rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    border-radius: var(--radius);
+    transition: color 0.15s ease;
+  }
+
+  .nav-desktop a:hover,
+  .nav-mobile a:hover {
+    color: var(--text);
+  }
+
+  .lang {
+    display: flex;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .lang a,
+  .lang span[aria-current] {
+    display: grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.25rem;
+    padding-inline: 0.5rem;
+    text-decoration: none;
+  }
+
+  .lang a {
+    color: var(--text-muted);
+  }
+
+  .lang a:hover {
+    color: var(--text);
+    background: var(--bg-raised);
+  }
+
+  .lang span[aria-current] {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+
+  .nav-mobile summary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.9375rem;
+  }
+
+  .nav-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-mobile nav {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 0.5rem var(--gutter) 1rem;
+  }
+
+  .nav-mobile a {
+    padding: 0.85rem 0;
+    font-size: 1.0625rem;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+  }
+
+  .nav-mobile li:last-child a {
+    border-bottom: 0;
+  }
+
+  @media (min-width: 62rem) {
+    .nav-desktop {
+      display: block;
+    }
+
+    .nav-mobile {
+      display: none;
+    }
+
+    .brand {
+      margin-right: 1rem;
+    }
+
+    .nav-desktop {
+      margin-right: auto;
+    }
+  }
+</style>

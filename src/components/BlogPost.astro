@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import { render } from 'astro:content';
+import { company } from '../site';
+import { t, localeRoot, formatDate, isoDate } from '../i18n';
+import { type Post, postLocale, postPath, getTranslation } from '../lib/blog';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const locale = postLocale(post);
+const d = t(locale);
+const { Content } = await render(post);
+const translation = await getTranslation(post);
+const alternates = translation
+  ? { [locale]: postPath(post), [postLocale(translation)]: postPath(translation) }
+  : { [locale]: postPath(post) };
+---
+
+<Base locale={locale} title={`${post.data.title} — JustDev`} description={post.data.description} alternates={alternates} ogType="article">
+  <meta slot="head" property="article:published_time" content={post.data.date.toISOString()} />
+  <article class="wrap post">
+    <p class="back mono"><a href={`${localeRoot(locale)}blog/`}>← {d.blog.back}</a></p>
+    <header>
+      <p class="meta mono">{d.blog.published}: <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date, locale)}</time></p>
+      <h1>{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    <aside class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">{d.blog.ctaTitle}</h2>
+      <p>{d.blog.ctaBody}</p>
+      <p><a class="btn btn--primary" href={`mailto:${company.email}`}>{company.email}</a></p>
+    </aside>
+  </article>
+</Base>
+
+<style>
+  .post {
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .back a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .back a:hover {
+    color: var(--accent);
+  }
+
+  header {
+    max-width: 46rem;
+    margin-block: 2rem 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .meta {
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: -0.03em;
+  }
+
+  .lede {
+    margin-top: 1.25rem;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+  }
+
+  .cta {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 42rem;
+    margin-top: 3.5rem;
+    padding: 1.75rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: var(--bg-raised);
+  }
+
+  .cta h2 {
+    font-size: 1.375rem;
+  }
+
+  .cta p:not(:last-child) {
+    color: var(--text-muted);
+  }
+
+  .cta .btn {
+    margin-top: 0.5rem;
+    overflow-wrap: anywhere;
+  }
+</style>
