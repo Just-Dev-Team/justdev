@@ -141,7 +141,7 @@ const mailto = `mailto:${company.email}`;
         d.about.facts.map((f) => (
           <div>
             <dt class="mono">{f.k}</dt>
-            <dd>{f.v}</dd>
+            <dd>{'href' in f ? <a href={company.kjug}>{f.v}</a> : f.v}</dd>
           </div>
         ))
       }
@@ -172,6 +172,22 @@ const mailto = `mailto:${company.email}`;
   )
 }
 
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+    <SectionHead id="faq" index={d.faq.index} kicker={d.faq.kicker} title={d.faq.title} />
+    <div class="faq">
+      {
+        d.faq.items.map((f) => (
+          <div class="faq-item">
+            <h3>{f.q}</h3>
+            <p>{f.a}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
 <section class="section" id="contact" aria-labelledby="contact-title">
   <div class="wrap">
     <div class="contact">
@@ -200,6 +216,13 @@ const mailto = `mailto:${company.email}`;
           <dd>
             NIP: {company.nip}<br />
             REGON: {company.regon}
+          </dd>
+        </div>
+        <div>
+          <dt class="mono">{d.contact.profiles}</dt>
+          <dd class="profiles">
+            <a href={company.linkedin} rel="me">LinkedIn</a>
+            <a href={company.github} rel="me">GitHub</a>
           </dd>
         </div>
       </dl>
@@ -615,6 +638,31 @@ const mailto = `mailto:${company.email}`;
     margin-top: 1.25rem;
   }
 
+  /* FAQ */
+  .faq {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .faq-item {
+    display: grid;
+    gap: 0.6rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .faq h3 {
+    font-size: 1.1875rem;
+    letter-spacing: -0.01em;
+  }
+
+  .faq-item p {
+    color: var(--text-muted);
+    max-width: 46rem;
+  }
+
   /* Contact */
   .contact {
     padding: clamp(1.5rem, 5vw, 3.5rem);
@@ -633,6 +681,12 @@ const mailto = `mailto:${company.email}`;
 
   .contact-list dd {
     margin: 0.35rem 0 0;
+  }
+
+  .profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
   }
 
   .contact-list address {
@@ -667,6 +721,11 @@ const mailto = `mailto:${company.email}`;
 
     .contact-list {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .faq-item {
+      grid-template-columns: 2fr 3fr;
+      gap: 2rem;
     }
   }
 

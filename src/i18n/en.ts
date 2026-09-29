@@ -4,10 +4,11 @@ export const en: Dict = {
   meta: {
     homeTitle: 'JustDev — backend engineering and cloud infrastructure',
     homeDescription:
-      'JustDev is a software company based in Kielce, Poland. We design, build and run highly scalable backends (Java, Kotlin, Python) and the cloud infrastructure behind them. Large-scale e-commerce and public sector experience.',
+      'JustDev, Kielce, Poland: we design, build and run highly scalable backends in Java, Kotlin and Python, plus the cloud infrastructure behind them.',
     blogTitle: 'Blog — JustDev',
-    blogDescription: 'News and articles from JustDev on backend engineering, cloud and security.',
+    blogDescription: 'The JustDev blog: company news and articles on backend engineering in Java, Kotlin and Python, cloud infrastructure and security.',
     ogLocale: 'en_US',
+    ogImageAlt: 'JustDev — backend engineering and cloud infrastructure for high-traffic systems',
   },
   a11y: {
     skip: 'Skip to content',
@@ -164,7 +165,7 @@ export const en: Dict = {
       { k: 'Location', v: 'Kielce, Poland' },
       { k: 'Founded', v: '2020' },
       { k: 'Working languages', v: 'English, Polish' },
-      { k: 'Community', v: 'Kielce Java User Group' },
+      { k: 'Community', v: 'Kielce Java User Group', href: 'kjug' },
     ],
   },
   news: {
@@ -174,8 +175,39 @@ export const en: Dict = {
     all: 'All posts',
     read: 'Read post',
   },
-  contact: {
+  faq: {
     index: '07',
+    kicker: 'FAQ',
+    title: 'Frequently asked questions',
+    items: [
+      {
+        q: 'What does JustDev do?',
+        a: 'We design, build and run highly scalable backends in Java, Kotlin and Python, together with the cloud infrastructure they run on. We also build frontends and supporting tools, and provide IT consulting and security services.',
+      },
+      {
+        q: 'Where are you based, and do you work with international clients?',
+        a: 'The company is based in Kielce, Poland, and has been operating since 2020. We work remotely with clients in Poland and abroad, in English and Polish. On projects for European e-commerce platforms we work in international teams.',
+      },
+      {
+        q: 'Which industries do you have experience in?',
+        a: 'Mainly large-scale e-commerce — as a subcontractor to software companies, we work on systems for some of Europe’s largest e-commerce platforms — and the public sector, on projects for authorities and institutions in Poland.',
+      },
+      {
+        q: 'Why don’t you publish client names?',
+        a: 'Our projects are covered by non-disclosure agreements. We are glad to discuss our experience in a direct conversation, as far as those agreements allow.',
+      },
+      {
+        q: 'Can you join an existing team?',
+        a: 'Yes. We can own the whole backend and infrastructure area, or join your team and work within your processes.',
+      },
+      {
+        q: 'How do we start working together?',
+        a: 'Email arturwegrzyn96@gmail.com or call +48 601 698 230. Tell us briefly about the system, the scale and the timeline, and we will get back to you to set up a call.',
+      },
+    ],
+  },
+  contact: {
+    index: '08',
     kicker: 'Contact',
     title: 'Let’s talk about your project',
     intro:
@@ -184,6 +216,7 @@ export const en: Dict = {
     phone: 'Phone',
     address: 'Address',
     company: 'Company details',
+    profiles: 'Profiles',
   },
   footer: {
     rights: 'All rights reserved.',
@@ -196,6 +229,8 @@ export const en: Dict = {
     intro: 'Company news and articles on backend engineering, cloud and security.',
     back: 'All posts',
     published: 'Published',
+    author: 'Author',
+    home: 'Home',
     ctaTitle: 'Have a project we could help with?',
     ctaBody: 'Get in touch — we will reply and set up a call.',
   },

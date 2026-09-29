@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import JsonLd from './JsonLd.astro';
+import { blogIndexSchema } from '../lib/schema';
 import { t, formatDate, isoDate, type Locale } from '../i18n';
 import { getPosts, postPath } from '../lib/blog';
 
@@ -13,6 +15,7 @@ const posts = await getPosts(locale);
 ---
 
 <Base locale={locale} title={d.meta.blogTitle} description={d.meta.blogDescription} alternates={{ pl: '/blog/', en: '/en/blog/' }}>
+  <JsonLd slot="head" data={blogIndexSchema(locale, posts)} />
   <div class="wrap page">
     <header class="section-head">
       <p class="section-kicker mono">{d.blogNav}</p>

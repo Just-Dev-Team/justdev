@@ -40,7 +40,8 @@ const root = localeRoot(locale);
         <dt class="mono">{d.contact.kicker}</dt>
         <dd>
           <a href={`mailto:${company.email}`}>{company.email}</a><br />
-          <a href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a>
+          <a href={`tel:${company.phoneHref}`}>{company.phoneDisplay}</a><br />
+          <a href={company.linkedin} rel="me">LinkedIn</a> · <a href={company.github} rel="me">GitHub</a> · <a href={company.kjug}>KJUG</a>
         </dd>
       </div>
     </dl>

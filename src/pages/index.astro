@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Home from '../components/Home.astro';
-import OrgJsonLd from '../components/OrgJsonLd.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { homeSchema } from '../lib/schema';
 import { t } from '../i18n';
 
 const locale = 'pl';
@@ -9,6 +10,6 @@ const d = t(locale);
 ---
 
 <Base locale={locale} title={d.meta.homeTitle} description={d.meta.homeDescription} alternates={{ pl: '/', en: '/en/' }}>
-  <OrgJsonLd slot="head" locale={locale} description={d.meta.homeDescription} />
+  <JsonLd slot="head" data={homeSchema(locale)} />
   <Home locale={locale} />
 </Base>

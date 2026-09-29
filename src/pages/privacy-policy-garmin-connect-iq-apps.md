@@ -6,7 +6,7 @@ description: Privacy policy for Connect IQ applications and widgets for Garmin d
 
 # Privacy Policy — Garmin Connect IQ Apps
 
-**Last updated: 2026-03-23**
+**Last updated: 2026-09-29**
 
 ## Overview
 
@@ -44,7 +44,7 @@ If this policy changes, the updated version will be published at this URL with a
 
 ## Contact
 
-For questions about this privacy policy, contact: **kontakt@justdev.pl**
+For questions about this privacy policy, contact: **arturwegrzyn96@gmail.com**
 
 ---
 

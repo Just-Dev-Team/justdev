@@ -15,8 +15,9 @@ export const company = {
   phoneDisplay: '+48 601 698 230',
   phoneHref: '+48601698230',
   foundingYear: 2020,
-  // TODO(Artur): add company / owner profile URLs (LinkedIn, GitHub) and the KJUG website URL.
-  sameAs: [] as string[],
+  linkedin: 'https://www.linkedin.com/in/artur-wegrzyn/',
+  github: 'https://github.com/Stiuil06',
+  kjug: 'https://kjug.justdev.pl/',
 } as const;
 
 // Shown in the footer as "content updated". Bump when you change the site's content.

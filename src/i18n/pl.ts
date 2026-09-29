@@ -2,10 +2,11 @@ export const pl = {
   meta: {
     homeTitle: 'JustDev — backend i chmura dla systemów wysoko skalowalnych',
     homeDescription:
-      'JustDev Artur Węgrzyn, Kielce. Projektujemy, budujemy i utrzymujemy wysoko skalowalne backendy (Java, Kotlin, Python) oraz infrastrukturę chmurową. E-commerce na dużą skalę i sektor publiczny.',
+      'JustDev z Kielc projektuje, buduje i utrzymuje wysoko skalowalne backendy (Java, Kotlin, Python) oraz infrastrukturę chmurową. E-commerce i sektor publiczny.',
     blogTitle: 'Blog — JustDev',
-    blogDescription: 'Aktualności i wpisy firmy JustDev: backend, chmura, bezpieczeństwo.',
+    blogDescription: 'Blog firmy JustDev z Kielc: aktualności oraz wpisy o backendzie w Javie, Kotlinie i Pythonie, infrastrukturze chmurowej i bezpieczeństwie.',
     ogLocale: 'pl_PL',
+    ogImageAlt: 'JustDev — backend i infrastruktura chmurowa dla systemów wysoko skalowalnych',
   },
   a11y: {
     skip: 'Przejdź do treści',
@@ -163,7 +164,7 @@ export const pl = {
       { k: 'Siedziba', v: 'Kielce, woj. świętokrzyskie' },
       { k: 'Na rynku od', v: '2020' },
       { k: 'Języki współpracy', v: 'polski, angielski' },
-      { k: 'Społeczność', v: 'Kielce Java User Group' },
+      { k: 'Społeczność', v: 'Kielce Java User Group', href: 'kjug' },
     ],
   },
   news: {
@@ -173,8 +174,39 @@ export const pl = {
     all: 'Wszystkie wpisy',
     read: 'Czytaj wpis',
   },
-  contact: {
+  faq: {
     index: '07',
+    kicker: 'FAQ',
+    title: 'Najczęstsze pytania',
+    items: [
+      {
+        q: 'Czym zajmuje się JustDev?',
+        a: 'Projektujemy, budujemy i utrzymujemy backendy aplikacji wysoko skalowalnych w Javie, Kotlinie i Pythonie oraz infrastrukturę chmurową, na której działają. Uzupełniająco tworzymy frontend i narzędzia wspierające, a także świadczymy doradztwo IT i usługi z zakresu bezpieczeństwa.',
+      },
+      {
+        q: 'Gdzie działa firma i czy pracujecie z klientami z zagranicy?',
+        a: 'Siedziba firmy jest w Kielcach (woj. świętokrzyskie), a działamy od 2020 roku. Pracujemy zdalnie z klientami z Polski i z zagranicy, po polsku i po angielsku. Przy projektach dla europejskich platform e-commerce pracujemy w międzynarodowych zespołach.',
+      },
+      {
+        q: 'W jakich branżach macie doświadczenie?',
+        a: 'Głównie w e-commerce na dużą skalę — jako podwykonawca software house’ów rozwijamy systemy dla największych platform e-commerce w Europie — oraz w sektorze publicznym, w projektach dla urzędów i instytucji w Polsce.',
+      },
+      {
+        q: 'Dlaczego nie publikujecie nazw klientów?',
+        a: 'Nasze projekty są objęte umowami o zachowaniu poufności (NDA). Szczegóły doświadczenia możemy omówić w bezpośredniej rozmowie, w zakresie, na jaki pozwalają umowy.',
+      },
+      {
+        q: 'Czy możecie dołączyć do istniejącego zespołu?',
+        a: 'Tak. Możemy przejąć cały obszar backendu i infrastruktury albo dołączyć do Twojego zespołu i pracować w Twoich procesach.',
+      },
+      {
+        q: 'Jak zacząć współpracę?',
+        a: 'Napisz na arturwegrzyn96@gmail.com lub zadzwoń pod +48 601 698 230. Opisz krótko system, skalę i termin — odezwiemy się, żeby umówić rozmowę.',
+      },
+    ],
+  },
+  contact: {
+    index: '08',
     kicker: 'Kontakt',
     title: 'Porozmawiajmy o Twoim projekcie',
     intro:
@@ -183,6 +215,7 @@ export const pl = {
     phone: 'Telefon',
     address: 'Adres',
     company: 'Dane firmy',
+    profiles: 'Profile',
   },
   footer: {
     rights: 'Wszelkie prawa zastrzeżone.',
@@ -195,6 +228,8 @@ export const pl = {
     intro: 'Aktualności firmy oraz wpisy o backendzie, chmurze i bezpieczeństwie.',
     back: 'Wszystkie wpisy',
     published: 'Opublikowano',
+    author: 'Autor',
+    home: 'Strona główna',
     ctaTitle: 'Masz projekt, w którym możemy pomóc?',
     ctaBody: 'Napisz do nas — odpowiemy i umówimy rozmowę.',
   },

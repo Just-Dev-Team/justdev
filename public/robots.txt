@@ -1,3 +1,4 @@
+# All crawlers, including search engines and AI assistants, may index the whole site.
 User-agent: *
 Allow: /
 

@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import JsonLd from './JsonLd.astro';
+import { postSchema } from '../lib/schema';
 import { render } from 'astro:content';
 import { company } from '../site';
 import { t, localeRoot, formatDate, isoDate } from '../i18n';
@@ -20,11 +22,18 @@ const alternates = translation
 ---
 
 <Base locale={locale} title={`${post.data.title} — JustDev`} description={post.data.description} alternates={alternates} ogType="article">
+  <JsonLd slot="head" data={postSchema(post, locale)} />
   <meta slot="head" property="article:published_time" content={post.data.date.toISOString()} />
+  <meta slot="head" property="article:modified_time" content={(post.data.updated ?? post.data.date).toISOString()} />
+  <meta slot="head" property="article:author" content={company.linkedin} />
   <article class="wrap post">
     <p class="back mono"><a href={`${localeRoot(locale)}blog/`}>← {d.blog.back}</a></p>
     <header>
-      <p class="meta mono">{d.blog.published}: <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date, locale)}</time></p>
+      <p class="meta mono">
+        {d.blog.published}: <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date, locale)}</time>
+        <span aria-hidden="true"> · </span>
+        {d.blog.author}: <a href={company.linkedin} rel="author">{company.owner}</a>
+      </p>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
     </header>
@@ -63,6 +72,10 @@ const alternates = translation
   .meta {
     color: var(--accent);
     margin-bottom: 1rem;
+  }
+
+  .meta a {
+    color: inherit;
   }
 
   h1 {
