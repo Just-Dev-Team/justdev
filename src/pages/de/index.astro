@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { homeSchema } from '../../lib/schema';
+import { t, localeAlternates } from '../../i18n';
+
+const locale = 'de';
+const d = t(locale);
+---
+
+<Base locale={locale} title={d.meta.homeTitle} description={d.meta.homeDescription} alternates={localeAlternates()}>
+  <JsonLd slot="head" data={homeSchema(locale)} />
+  <Home locale={locale} />
+</Base>

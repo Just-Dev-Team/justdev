@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { t, type Locale } from '../i18n';
+import { t, presentLocales, xDefault, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -21,8 +21,9 @@ const d = t(locale);
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site).href;
 const ogImage = new URL(`/og-${locale}.png`, site).href;
-const otherLocale: Locale = locale === 'pl' ? 'en' : 'pl';
-const hreflang = alternates && alternates.pl && alternates.en ? alternates : undefined;
+// hreflang only makes sense when the page exists in more than one language.
+const hreflangLocales = alternates ? presentLocales(alternates) : [];
+const hreflang = alternates && hreflangLocales.length > 1 ? alternates : undefined;
 ---
 
 <!doctype html>
@@ -48,9 +49,10 @@ const hreflang = alternates && alternates.pl && alternates.en ? alternates : und
     {
       hreflang && (
         <>
-          <link rel="alternate" hreflang="pl" href={new URL(hreflang.pl!, site).href} />
-          <link rel="alternate" hreflang="en" href={new URL(hreflang.en!, site).href} />
-          <link rel="alternate" hreflang="x-default" href={new URL(hreflang.pl!, site).href} />
+          {hreflangLocales.map((l) => (
+            <link rel="alternate" hreflang={l} href={new URL(hreflang[l]!, site).href} />
+          ))}
+          <link rel="alternate" hreflang="x-default" href={new URL(xDefault(hreflang)!, site).href} />
         </>
       )
     }
@@ -65,7 +67,12 @@ const hreflang = alternates && alternates.pl && alternates.en ? alternates : und
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={d.meta.ogLocale} />
-    {hreflang && <meta property="og:locale:alternate" content={t(otherLocale).meta.ogLocale} />}
+    {
+      hreflang &&
+        hreflangLocales
+          .filter((l) => l !== locale)
+          .map((l) => <meta property="og:locale:alternate" content={t(l).meta.ogLocale} />)
+    }
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

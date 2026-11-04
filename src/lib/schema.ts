@@ -1,7 +1,7 @@
 // schema.org structured data. Entities use stable @id URLs so pages reference
 // the same Organization / Person / WebSite nodes instead of redefining them.
 import { company } from '../site';
-import { t, localeRoot, type Locale } from '../i18n';
+import { t, localeRoot, locales, type Locale } from '../i18n';
 import type { Post } from './blog';
 import { postPath } from './blog';
 
@@ -14,7 +14,8 @@ export const ids = {
   website: `${SITE}/#website`,
 };
 
-const inLanguage = (locale: Locale) => (locale === 'pl' ? 'pl-PL' : 'en');
+const languageTags: Record<Locale, string> = { pl: 'pl-PL', en: 'en', de: 'de', fr: 'fr' };
+const inLanguage = (locale: Locale) => languageTags[locale];
 
 function organization(locale: Locale) {
   const d = t(locale);
@@ -104,7 +105,7 @@ function website() {
     '@id': ids.website,
     url: abs('/'),
     name: 'JustDev',
-    inLanguage: ['pl-PL', 'en'],
+    inLanguage: locales.map(inLanguage),
     publisher: { '@id': ids.org },
   };
 }

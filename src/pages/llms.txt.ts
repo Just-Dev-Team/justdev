@@ -2,13 +2,14 @@
 // (https://llmstxt.org). Generated from the same data as the pages, so it stays in sync.
 import type { APIRoute } from 'astro';
 import { company } from '../site';
-import { t } from '../i18n';
+import { t, locales, localeRoot, type Locale } from '../i18n';
 import { getPosts, postLocale, postPath } from '../lib/blog';
 
 export const GET: APIRoute = async ({ site }) => {
   const abs = (path: string) => new URL(path, site).href;
   const en = t('en');
   const pl = t('pl');
+  const languageNames: Record<Locale, string> = { pl: 'Polski', en: 'English', de: 'Deutsch', fr: 'Français' };
   const posts = await getPosts();
 
   const lines = [
@@ -16,7 +17,7 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     `> ${company.name} is a software engineering company based in ${company.city}, Poland, operating since ${company.foundingYear}. It designs, builds and runs highly scalable backends in Java, Kotlin and Python, together with the cloud infrastructure they run on. Experience: large-scale European e-commerce (as a subcontractor to software companies) and the Polish public sector. Client names are not published because of NDAs.`,
     '',
-    'The website is available in Polish (default) and English.',
+    'The website is available in Polish (default), English, German and French.',
     '',
     '## Company facts',
     '',
@@ -47,9 +48,10 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     `- [Home (English)](${abs('/en/')}): ${en.meta.homeDescription}`,
     `- [Strona główna (Polski)](${abs('/')}): ${pl.meta.homeDescription}`,
-    `- [Blog (English)](${abs('/en/blog/')})`,
-    `- [Blog (Polski)](${abs('/blog/')})`,
-    ...posts.map((p) => `- [${p.data.title}](${abs(postPath(p))}) (${postLocale(p) === 'en' ? 'English' : 'Polski'}): ${p.data.description}`),
+    `- [Startseite (Deutsch)](${abs('/de/')}): ${t('de').meta.homeDescription}`,
+    `- [Accueil (Français)](${abs('/fr/')}): ${t('fr').meta.homeDescription}`,
+    ...locales.map((l) => `- [Blog (${languageNames[l]})](${abs(`${localeRoot(l)}blog/`)})`),
+    ...posts.map((p) => `- [${p.data.title}](${abs(postPath(p))}) (${languageNames[postLocale(p)]}): ${p.data.description}`),
     '',
     '## Profiles',
     '',

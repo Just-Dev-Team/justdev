@@ -2,7 +2,7 @@
 import SectionHead from './SectionHead.astro';
 import HeroDiagram from './HeroDiagram.astro';
 import { company } from '../site';
-import { t, formatDate, isoDate, type Locale } from '../i18n';
+import { t, localeRoot, formatDate, isoDate, type Locale } from '../i18n';
 import { getPosts, postPath } from '../lib/blog';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 const { locale } = Astro.props;
 const d = t(locale);
 const posts = (await getPosts(locale)).slice(0, 3);
-const blogRoot = locale === 'pl' ? '/blog/' : '/en/blog/';
+const blogRoot = `${localeRoot(locale)}blog/`;
 const mailto = `mailto:${company.email}`;
 ---
 

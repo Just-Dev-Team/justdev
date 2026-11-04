@@ -1,10 +1,12 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { localeRoot, type Locale } from '../i18n';
+import { localeRoot, defaultLocale, isLocale, type Locale } from '../i18n';
 
 export type Post = CollectionEntry<'blog'>;
 
+/** Locale of a post, taken from its folder: src/content/blog/<locale>/<slug>.md */
 export function postLocale(post: Post): Locale {
-  return post.id.startsWith('en/') ? 'en' : 'pl';
+  const folder = post.id.slice(0, post.id.indexOf('/'));
+  return isLocale(folder) ? folder : defaultLocale;
 }
 
 export function postSlug(post: Post): string {
@@ -20,7 +22,8 @@ export async function getPosts(locale?: Locale): Promise<Post[]> {
   return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 }
 
-export async function getTranslation(post: Post): Promise<Post | undefined> {
-  const all = await getCollection('blog');
-  return all.find((p) => p.data.translationKey === post.data.translationKey && p.id !== post.id);
+/** Paths of this post in every language it exists in (itself included), keyed by locale. */
+export async function postAlternates(post: Post): Promise<Partial<Record<Locale, string>>> {
+  const all = await getCollection('blog', (p) => p.data.translationKey === post.data.translationKey);
+  return Object.fromEntries(all.map((p) => [postLocale(p), postPath(p)]));
 }

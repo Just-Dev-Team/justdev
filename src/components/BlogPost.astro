@@ -5,7 +5,7 @@ import { postSchema } from '../lib/schema';
 import { render } from 'astro:content';
 import { company } from '../site';
 import { t, localeRoot, formatDate, isoDate } from '../i18n';
-import { type Post, postLocale, postPath, getTranslation } from '../lib/blog';
+import { type Post, postLocale, postAlternates } from '../lib/blog';
 
 interface Props {
   post: Post;
@@ -15,10 +15,7 @@ const { post } = Astro.props;
 const locale = postLocale(post);
 const d = t(locale);
 const { Content } = await render(post);
-const translation = await getTranslation(post);
-const alternates = translation
-  ? { [locale]: postPath(post), [postLocale(translation)]: postPath(translation) }
-  : { [locale]: postPath(post) };
+const alternates = await postAlternates(post);
 ---
 
 <Base locale={locale} title={`${post.data.title} — JustDev`} description={post.data.description} alternates={alternates} ogType="article">

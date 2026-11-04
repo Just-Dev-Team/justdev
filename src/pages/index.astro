@@ -3,13 +3,13 @@ import Base from '../layouts/Base.astro';
 import Home from '../components/Home.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { homeSchema } from '../lib/schema';
-import { t } from '../i18n';
+import { t, localeAlternates } from '../i18n';
 
 const locale = 'pl';
 const d = t(locale);
 ---
 
-<Base locale={locale} title={d.meta.homeTitle} description={d.meta.homeDescription} alternates={{ pl: '/', en: '/en/' }}>
+<Base locale={locale} title={d.meta.homeTitle} description={d.meta.homeDescription} alternates={localeAlternates()}>
   <JsonLd slot="head" data={homeSchema(locale)} />
   <Home locale={locale} />
 </Base>

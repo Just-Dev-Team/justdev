@@ -23,4 +23,4 @@ export const company = {
 } as const;
 
 // Shown in the footer as "content updated". Bump when you change the site's content.
-export const contentUpdated = '2026-09-29';
+export const contentUpdated = '2026-11-04';
