@@ -1,11 +1,11 @@
 ---
 title: 'JustDev in 2026: what we do and where we are heading'
-description: 'We have launched a new bilingual website. A short overview of what we do, who we work with and what comes next.'
+description: 'We have launched a new multilingual website. A short overview of what we do, who we work with and what comes next.'
 date: 2026-09-29
 translationKey: company-profile-2026
 ---
 
-Since 2020, JustDev has been designing, building and running highly scalable backends and the cloud infrastructure they run on. We have just launched a new website in English and Polish, so this is a good moment to explain briefly what we do.
+Since 2020, JustDev has been designing, building and running highly scalable backends and the cloud infrastructure they run on. We have just launched a new multilingual website, so this is a good moment to explain briefly what we do.
 
 ## What we do
 
@@ -26,6 +26,6 @@ Artur Węgrzyn, who runs the company, is a co-organiser of the Kielce Java User 
 
 ## What comes next
 
-We want to work directly with more international clients — especially technology companies and startups that have raised funding and now need to scale their product quickly and safely. That is why our full offer is now available in English as well.
+We want to work directly with more international clients — especially technology companies and startups that have raised funding and now need to scale their product quickly and safely. That is why our full offer is now available in English, German and French as well.
 
 If you are building a system that has to handle serious traffic, [send us an email](mailto:arturwegrzyn96@gmail.com) or call [+48 601 698 230](tel:+48601698230).

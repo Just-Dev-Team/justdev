@@ -4,10 +4,10 @@ export const fr: Dict = {
   meta: {
     homeTitle: 'JustDev — ingénierie backend et infrastructure cloud',
     homeDescription:
-      'JustDev, Kielce (Pologne) : nous concevons, développons et exploitons des backends hautement scalables en Java, Kotlin et Python, ainsi que l’infrastructure cloud qui les fait tourner. E-commerce et secteur public.',
+      'JustDev, Kielce (Pologne) : nous concevons, développons et exploitons des backends hautement scalables en Java, Kotlin et Python, ainsi que l’infrastructure cloud qui les fait tourner. E-commerce et secteur public.',
     blogTitle: 'Blog — JustDev',
     blogDescription:
-      'Le blog JustDev : actualités de l’entreprise et articles sur le développement backend en Java, Kotlin et Python, l’infrastructure cloud et la sécurité.',
+      'Le blog JustDev : actualités de l’entreprise et articles sur le développement backend en Java, Kotlin et Python, l’infrastructure cloud et la sécurité.',
     ogLocale: 'fr_FR',
     ogImageAlt: 'JustDev — ingénierie backend et infrastructure cloud pour les systèmes à fort trafic',
   },
@@ -45,7 +45,7 @@ export const fr: Dict = {
     kicker: 'Services',
     title: 'De l’architecture à l’exploitation en production',
     intro:
-      'Nous couvrons tout le cycle de vie d’un système backend : conception, code, infrastructure, déploiement et évolution. Nous pouvons prendre en charge l’ensemble du périmètre ou rejoindre votre équipe.',
+      'Nous couvrons tout le cycle de vie d’un système backend : conception, code, infrastructure, déploiement et évolution. Nous pouvons prendre en charge l’ensemble du périmètre ou rejoindre votre équipe.',
     items: [
       {
         tag: 'backend',
@@ -82,7 +82,7 @@ export const fr: Dict = {
       {
         tag: 'advisory',
         title: 'Conseil IT et sécurité',
-        body: 'Nous vous aidons à prendre les bonnes décisions techniques et à réduire les risques : revues d’architecture et de code, plan de montée en charge, sécurité des applications et de l’infrastructure.',
+        body: 'Nous vous aidons à prendre les bonnes décisions techniques et à réduire les risques : revues d’architecture et de code, plan de montée en charge, sécurité des applications et de l’infrastructure.',
         points: [
           'revues d’architecture et de code',
           'choix technologiques et feuille de route du système',
@@ -96,7 +96,7 @@ export const fr: Dict = {
     kicker: 'Technologies',
     title: 'Le stack avec lequel nous travaillons au quotidien',
     intro:
-      'Le cœur, c’est la JVM et Python. Autour, nous construisons tout ce dont un système en production a besoin : des API à l’observabilité, en passant par l’infrastructure.',
+      'Le cœur, c’est la JVM et Python. Autour, nous construisons tout ce dont un système en production a besoin : des API à l’observabilité, en passant par l’infrastructure.',
     // TODO(Artur): keep in sync with the Polish list in pl.ts.
     layers: [
       { label: 'Langages', items: ['Java', 'Kotlin', 'Python'] },
@@ -114,7 +114,7 @@ export const fr: Dict = {
     steps: [
       {
         title: 'Cadrage',
-        body: 'Nous découvrons l’objectif métier, le système existant et les contraintes : trafic, budget, délais, exigences de sécurité.',
+        body: 'Nous découvrons l’objectif métier, le système existant et les contraintes : trafic, budget, délais, exigences de sécurité.',
       },
       {
         title: 'Architecture et plan',
@@ -148,7 +148,7 @@ export const fr: Dict = {
     ],
     ndaTitle: 'Confidentialité',
     ndaBody:
-      'Nos projets sont couverts par des accords de confidentialité ; nous ne publions donc ni noms ni logos de clients. Nous pouvons en discuter en détail lors d’un échange direct, dans les limites permises par ces accords.',
+      'Nos projets sont couverts par des accords de confidentialité ; nous ne publions donc ni noms ni logos de clients. Nous pouvons en discuter en détail lors d’un échange direct, dans les limites permises par ces accords.',
     direct:
       'Nous sommes ouverts à une collaboration directe — y compris avec des entreprises technologiques et des start-ups qui doivent faire monter en charge leur produit rapidement et en toute sécurité.',
   },
@@ -182,27 +182,27 @@ export const fr: Dict = {
     title: 'Questions fréquentes',
     items: [
       {
-        q: 'Que fait JustDev ?',
+        q: 'Que fait JustDev ?',
         a: 'Nous concevons, développons et exploitons des backends hautement scalables en Java, Kotlin et Python, ainsi que l’infrastructure cloud sur laquelle ils tournent. En complément, nous réalisons des frontends et des outils d’appui, et proposons du conseil IT et des services de sécurité.',
       },
       {
-        q: 'Où est basée l’entreprise, et travaillez-vous avec des clients étrangers ?',
+        q: 'Où est basée l’entreprise, et travaillez-vous avec des clients étrangers ?',
         a: 'L’entreprise est basée à Kielce, en Pologne, et est active depuis 2020. Nous travaillons à distance avec des clients en Pologne et à l’étranger, en anglais et en polonais. Sur les projets pour des plateformes e-commerce européennes, nous travaillons dans des équipes internationales.',
       },
       {
-        q: 'Dans quels secteurs avez-vous de l’expérience ?',
+        q: 'Dans quels secteurs avez-vous de l’expérience ?',
         a: 'Principalement dans l’e-commerce à grande échelle — en tant que sous-traitant de sociétés de services, nous développons des systèmes pour certaines des plus grandes plateformes e-commerce d’Europe — et dans le secteur public, sur des projets pour des administrations et institutions en Pologne.',
       },
       {
-        q: 'Pourquoi ne publiez-vous pas les noms de vos clients ?',
+        q: 'Pourquoi ne publiez-vous pas les noms de vos clients ?',
         a: 'Nos projets sont couverts par des accords de confidentialité (NDA). Nous pouvons détailler notre expérience lors d’un échange direct, dans les limites permises par ces accords.',
       },
       {
-        q: 'Pouvez-vous rejoindre une équipe existante ?',
+        q: 'Pouvez-vous rejoindre une équipe existante ?',
         a: 'Oui. Nous pouvons prendre en charge tout le périmètre backend et infrastructure, ou rejoindre votre équipe et travailler selon vos processus.',
       },
       {
-        q: 'Comment démarrer une collaboration ?',
+        q: 'Comment démarrer une collaboration ?',
         a: 'Écrivez à arturwegrzyn96@gmail.com ou appelez le +48 601 698 230. Décrivez brièvement le système, l’échelle et le calendrier — nous reviendrons vers vous pour convenir d’un échange.',
       },
     ],
@@ -233,7 +233,7 @@ export const fr: Dict = {
     published: 'Publication',
     author: 'Auteur',
     home: 'Accueil',
-    ctaTitle: 'Un projet sur lequel nous pourrions vous aider ?',
+    ctaTitle: 'Un projet sur lequel nous pourrions vous aider ?',
     ctaBody: 'Écrivez-nous — nous vous répondrons et conviendrons d’un échange.',
   },
   dateLocale: 'fr-FR',

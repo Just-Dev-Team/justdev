@@ -143,7 +143,7 @@ export const de: Dict = {
       {
         tag: 'public sector',
         title: 'Öffentlicher Sektor',
-        body: 'Wir realisieren Projekte für Behörden und öffentliche Einrichtungen in Polen — Systeme, die die Digitalisierung von Bürgerdiensten unterstützen und bei denen Zuverlässigkeit, Sicherheit und Konformität zählen.',
+        body: 'Wir realisieren Projekte für Behörden und öffentliche Einrichtungen in Polen — Systeme, die die Digitalisierung von Bürgerdiensten unterstützen und bei denen Zuverlässigkeit, Sicherheit und Compliance zählen.',
       },
     ],
     ndaTitle: 'Vertraulichkeit',

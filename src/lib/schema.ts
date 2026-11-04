@@ -14,8 +14,7 @@ export const ids = {
   website: `${SITE}/#website`,
 };
 
-const languageTags: Record<Locale, string> = { pl: 'pl-PL', en: 'en', de: 'de', fr: 'fr' };
-const inLanguage = (locale: Locale) => languageTags[locale];
+const inLanguage = (locale: Locale) => t(locale).dateLocale;
 
 function organization(locale: Locale) {
   const d = t(locale);

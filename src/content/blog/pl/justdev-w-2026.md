@@ -1,11 +1,11 @@
 ---
 title: 'JustDev w 2026 roku: czym się zajmujemy i dokąd zmierzamy'
-description: 'Uruchamiamy nową, dwujęzyczną stronę. Krótko o tym, co robimy, dla kogo pracujemy i jakie mamy plany na najbliższy czas.'
+description: 'Uruchamiamy nową, wielojęzyczną stronę. Krótko o tym, co robimy, dla kogo pracujemy i jakie mamy plany na najbliższy czas.'
 date: 2026-09-29
 translationKey: company-profile-2026
 ---
 
-Od 2020 roku JustDev projektuje, buduje i utrzymuje backendy aplikacji wysoko skalowalnych oraz infrastrukturę chmurową, na której one działają. Właśnie uruchomiliśmy nową stronę — po polsku i po angielsku — więc to dobry moment, żeby krótko opisać, czym się zajmujemy.
+Od 2020 roku JustDev projektuje, buduje i utrzymuje backendy aplikacji wysoko skalowalnych oraz infrastrukturę chmurową, na której one działają. Właśnie uruchomiliśmy nową, wielojęzyczną stronę, więc to dobry moment, żeby krótko opisać, czym się zajmujemy.
 
 ## Co robimy
 
@@ -26,6 +26,6 @@ Artur Węgrzyn, który prowadzi firmę, współtworzy Kielce Java User Group (KJ
 
 ## Co dalej
 
-Chcemy rozwijać bezpośrednią współpracę z klientami zagranicznymi — w szczególności z firmami technologicznymi i startupami, które po pozyskaniu finansowania muszą szybko i bezpiecznie skalować produkt. Dlatego cała nasza oferta jest od teraz dostępna także po angielsku.
+Chcemy rozwijać bezpośrednią współpracę z klientami zagranicznymi — w szczególności z firmami technologicznymi i startupami, które po pozyskaniu finansowania muszą szybko i bezpiecznie skalować produkt. Dlatego cała nasza oferta jest od teraz dostępna także po angielsku, niemiecku i francusku.
 
 Jeśli budujesz system, który ma wytrzymać duży ruch, [napisz do nas](mailto:arturwegrzyn96@gmail.com) albo zadzwoń: [+48 601 698 230](tel:+48601698230).

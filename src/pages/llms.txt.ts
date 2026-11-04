@@ -2,14 +2,12 @@
 // (https://llmstxt.org). Generated from the same data as the pages, so it stays in sync.
 import type { APIRoute } from 'astro';
 import { company } from '../site';
-import { t, locales, localeRoot, type Locale } from '../i18n';
+import { t, locales, localeNames, localeRoot } from '../i18n';
 import { getPosts, postLocale, postPath } from '../lib/blog';
 
 export const GET: APIRoute = async ({ site }) => {
   const abs = (path: string) => new URL(path, site).href;
   const en = t('en');
-  const pl = t('pl');
-  const languageNames: Record<Locale, string> = { pl: 'Polski', en: 'English', de: 'Deutsch', fr: 'Français' };
   const posts = await getPosts();
 
   const lines = [
@@ -46,12 +44,9 @@ export const GET: APIRoute = async ({ site }) => {
     ...en.faq.items.flatMap((f) => [`### ${f.q}`, '', f.a, '']),
     '## Pages',
     '',
-    `- [Home (English)](${abs('/en/')}): ${en.meta.homeDescription}`,
-    `- [Strona główna (Polski)](${abs('/')}): ${pl.meta.homeDescription}`,
-    `- [Startseite (Deutsch)](${abs('/de/')}): ${t('de').meta.homeDescription}`,
-    `- [Accueil (Français)](${abs('/fr/')}): ${t('fr').meta.homeDescription}`,
-    ...locales.map((l) => `- [Blog (${languageNames[l]})](${abs(`${localeRoot(l)}blog/`)})`),
-    ...posts.map((p) => `- [${p.data.title}](${abs(postPath(p))}) (${languageNames[postLocale(p)]}): ${p.data.description}`),
+    ...locales.map((l) => `- [${t(l).blog.home} (${localeNames[l]})](${abs(localeRoot(l))}): ${t(l).meta.homeDescription}`),
+    ...locales.map((l) => `- [Blog (${localeNames[l]})](${abs(`${localeRoot(l)}blog/`)})`),
+    ...posts.map((p) => `- [${p.data.title}](${abs(postPath(p))}) (${localeNames[postLocale(p)]}): ${p.data.description}`),
     '',
     '## Profiles',
     '',
