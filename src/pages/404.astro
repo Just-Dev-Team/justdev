@@ -1,9 +1,32 @@
 ---
 import Base from '../layouts/Base.astro';
 import Logo from '../components/Logo.astro';
+import type { Locale } from '../i18n';
+
+const titles: Record<Locale, string> = {
+  pl: '404 — Nie znaleziono strony — JustDev',
+  en: '404 — Page not found — JustDev',
+  de: '404 — Seite nicht gefunden — JustDev',
+  fr: '404 — Page introuvable — JustDev',
+};
 ---
 
-<Base locale="pl" title="404 — Nie znaleziono strony / Page not found — JustDev" description="Nie znaleziono strony. Page not found." noindex bare>
+<Base
+  locale="pl"
+  title={titles.pl}
+  description="Nie znaleziono strony. Page not found. Seite nicht gefunden. Page introuvable."
+  noindex
+  bare
+>
+  <script define:vars={{ titles }}>
+    // GitHub Pages serves this one file for every missing URL, so pick the
+    // title and document language from the URL's locale prefix (/en/, /de/, /fr/).
+    const match = location.pathname.match(/^\/(en|de|fr)\//);
+    if (match) {
+      document.title = titles[match[1]];
+      document.documentElement.lang = match[1];
+    }
+  </script>
   <div class="wrap nf">
     <a class="brand" href="/" aria-label="JustDev — strona główna"><Logo /></a>
     <p class="code mono" aria-hidden="true">404</p>

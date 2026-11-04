@@ -27,9 +27,9 @@ const alternates = await postAlternates(post);
     <p class="back mono"><a href={`${localeRoot(locale)}blog/`}>← {d.blog.back}</a></p>
     <header>
       <p class="meta mono">
-        {d.blog.published}: <time datetime={isoDate(post.data.date)}>{formatDate(post.data.date, locale)}</time>
+        {d.blog.published}{d.colon}<time datetime={isoDate(post.data.date)}>{formatDate(post.data.date, locale)}</time>
         <span aria-hidden="true"> · </span>
-        {d.blog.author}: <a href={company.linkedin} rel="author">{company.owner}</a>
+        {d.blog.author}{d.colon}<a href={company.linkedin} rel="author">{company.owner}</a>
       </p>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>

@@ -236,5 +236,7 @@ export const fr: Dict = {
     ctaTitle: 'Un projet sur lequel nous pourrions vous aider ?',
     ctaBody: 'Écrivez-nous — nous vous répondrons et conviendrons d’un échange.',
   },
+  // French puts a (no-break) space before the colon: "NIP : 123".
+  colon: '\u00a0: ',
   dateLocale: 'fr-FR',
 };

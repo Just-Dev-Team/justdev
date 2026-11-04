@@ -32,9 +32,9 @@ const root = localeRoot(locale);
       <div>
         <dt class="mono">NIP / REGON / {d.contact.vat}</dt>
         <dd>
-          NIP: {company.nip}<br />
-          REGON: {company.regon}<br />
-          {d.contact.vat}: {company.vatEu}
+          NIP{d.colon}{company.nip}<br />
+          REGON{d.colon}{company.regon}<br />
+          {d.contact.vat}{d.colon}{company.vatEu}
         </dd>
       </div>
       <div>
@@ -50,7 +50,7 @@ const root = localeRoot(locale);
 
   <div class="wrap bottom mono">
     <p>© {year} {company.name}. {d.footer.rights}</p>
-    <p>{d.footer.updated}: <time datetime={contentUpdated}>{formatDate(new Date(contentUpdated), locale)}</time></p>
+    <p>{d.footer.updated}{d.colon}<time datetime={contentUpdated}>{formatDate(new Date(contentUpdated), locale)}</time></p>
   </div>
 </footer>
 

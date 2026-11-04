@@ -234,6 +234,8 @@ export const pl = {
     ctaTitle: 'Masz projekt, w którym możemy pomóc?',
     ctaBody: 'Napisz do nas — odpowiemy i umówimy rozmowę.',
   },
+  /** Separator between a label and its value, e.g. "NIP: 123". */
+  colon: ': ',
   dateLocale: 'pl-PL',
 };
 

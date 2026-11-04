@@ -235,5 +235,6 @@ export const en: Dict = {
     ctaTitle: 'Have a project we could help with?',
     ctaBody: 'Get in touch — we will reply and set up a call.',
   },
+  colon: ': ',
   dateLocale: 'en-GB',
 };

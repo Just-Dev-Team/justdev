@@ -236,5 +236,6 @@ export const de: Dict = {
     ctaTitle: 'Haben Sie ein Projekt, bei dem wir helfen können?',
     ctaBody: 'Schreiben Sie uns — wir antworten und vereinbaren ein Gespräch.',
   },
+  colon: ': ',
   dateLocale: 'de-DE',
 };

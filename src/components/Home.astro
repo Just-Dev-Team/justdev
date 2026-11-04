@@ -214,9 +214,9 @@ const mailto = `mailto:${company.email}`;
         <div>
           <dt class="mono">{d.contact.company}</dt>
           <dd>
-            NIP: {company.nip}<br />
-            REGON: {company.regon}<br />
-            {d.contact.vat}: {company.vatEu}
+            NIP{d.colon}{company.nip}<br />
+            REGON{d.colon}{company.regon}<br />
+            {d.contact.vat}{d.colon}{company.vatEu}
           </dd>
         </div>
         <div>
